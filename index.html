@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>今日使用量計算</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        .container {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            text-align: center;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>今日使用量計算</h2>
+        <label>昨日的剩餘量：</label>
+        <input type="number" id="yesterdayStock" placeholder="輸入昨日剩餘量">
+
+        <label>今日的退冰量：</label>
+        <input type="number" id="todayThawed" placeholder="輸入今日退冰量">
+
+        <label>今日的剩餘量：</label>
+        <input type="number" id="todayStock" placeholder="輸入今日剩餘量">
+
+        <button onclick="calculateUsage()">計算使用量</button>
+
+        <div class="result" id="usageResult"></div>
+    </div>
+
+    <script>
+        function calculateUsage() {
+            let yesterdayStock = parseFloat(document.getElementById("yesterdayStock").value) || 0;
+            let todayThawed = parseFloat(document.getElementById("todayThawed").value) || 0;
+            let todayStock = parseFloat(document.getElementById("todayStock").value) || 0;
+
+            let todayUsage = yesterdayStock + todayThawed - todayStock;
+
+            document.getElementById("usageResult").innerHTML = "今日使用量：" + todayUsage.toFixed(2);
+        }
+    </script>
+</body>
+</html>
